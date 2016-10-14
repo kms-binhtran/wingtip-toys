@@ -50,3 +50,13 @@ div.category-menu a.category-menu-item {
     font-style: normal;
     font-weight: bold;
 }
+
+.product-detail-img {
+    border: solid;
+    height: 300px
+}
+
+.product-detail-info {
+    vertical-align: top;
+    text-align: left;
+}
