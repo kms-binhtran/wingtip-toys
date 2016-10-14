@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
@@ -7,6 +8,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using WingtipToys.Models;
 
 namespace WingtipToys
 {
@@ -75,6 +77,13 @@ namespace WingtipToys
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+        }
+
+        public IQueryable<Category> GetCategories()
+        {
+            var db = new WingtipToys.Models.ProductContext();
+            IQueryable<Category> query = db.Categories;
+            return query;
         }
     }
 
