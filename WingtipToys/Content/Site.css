@@ -36,3 +36,17 @@ input[type="select"] {
         padding: 0;
     }
 }
+
+div.image-title-content {
+    text-align: center;
+}
+
+div.category-menu {
+    text-align: center;
+}
+
+div.category-menu a.category-menu-item {
+    font-size: large;
+    font-style: normal;
+    font-weight: bold;
+}
