@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Security.Principal;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using WingtipToys.Logic;
 using WingtipToys.Models;
 
 namespace WingtipToys
@@ -74,6 +72,15 @@ namespace WingtipToys
 
         }
 
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            using (var usersShoppingCart = new ShoppingCartActions())
+            {
+                var cartStr = string.Format("Cart ({0})", usersShoppingCart.GetCount());
+                cartCount.InnerText = cartStr;
+            }
+        }
+
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
@@ -81,7 +88,7 @@ namespace WingtipToys
 
         public IQueryable<Category> GetCategories()
         {
-            var db = new WingtipToys.Models.ProductContext();
+            var db = new ProductContext();
             IQueryable<Category> query = db.Categories;
             return query;
         }

@@ -18,7 +18,7 @@ namespace WingtipToys
 
         public IQueryable<Product> GetProducts([QueryString("id")] int? categoryId)
         {
-            var dbContext = new WingtipToys.Models.ProductContext();
+            var dbContext = new ProductContext();
             IQueryable<Product> query = dbContext.Products;
             if (categoryId.HasValue && categoryId > 0)
             {
